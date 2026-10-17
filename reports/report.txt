@@ -1,0 +1,86 @@
+======================================================================
+SECURITY LOG ANALYSIS REPORT
+======================================================================
+Source file     : sample_logs/auth.log
+Generated at    : 2026-10-17 12:12:32
+Unparsed lines  : 0
+
+----------------------------------------------------------------------
+OVERVIEW
+----------------------------------------------------------------------
+Total events    : 666
+Failed logins   : 133
+Successful logins: 533
+Alerts          : 15 (HIGH 1, MEDIUM 12, LOW 2)
+
+Top 5 IPs by failed logins:
+  1. 203.0.113.66 - 35 failures
+  2. 203.0.113.10 - 24 failures
+  3. 192.0.2.77 - 21 failures
+  4. 198.51.100.11 - 19 failures
+  5. 198.51.100.10 - 14 failures
+
+Top 5 targeted usernames (all attempts):
+  1. bob - 112 attempts
+  2. frank - 107 attempts
+  3. alice - 101 attempts
+  4. dave - 99 attempts
+  5. erin - 92 attempts
+
+======================================================================
+HIGH ALERTS (1)
+======================================================================
+  1. [HIGH] Possible compromised account  (203.0.113.66) at 2026-10-16 14:34:30
+     Why: 35 failed attempts from 203.0.113.66 in the 10 minutes BEFORE this successful login - then it worked. The password may have been guessed, so this account should be checked immediately.
+
+======================================================================
+MEDIUM ALERTS (12)
+======================================================================
+  1. [MEDIUM] Targeted privileged account  (203.0.113.50) at 2026-10-15 10:00:00
+     Why: 3 attempts on the sensitive account 'admin' from 203.0.113.50 between 10:00:00 and 11:45:00. Privileged accounts are prime targets.
+
+  2. [MEDIUM] Targeted privileged account  (203.0.113.50) at 2026-10-15 10:15:00
+     Why: 2 attempts on the sensitive account 'root' from 203.0.113.50 between 10:15:00 and 11:15:00. Privileged accounts are prime targets.
+
+  3. [MEDIUM] Targeted privileged account  (203.0.113.50) at 2026-10-15 10:30:00
+     Why: 1 attempts on the sensitive account 'test' from 203.0.113.50 between 10:30:00 and 10:30:00. Privileged accounts are prime targets.
+
+  4. [MEDIUM] Targeted privileged account  (203.0.113.50) at 2026-10-15 10:45:00
+     Why: 2 attempts on the sensitive account 'guest' from 203.0.113.50 between 10:45:00 and 11:30:00. Privileged accounts are prime targets.
+
+  5. [MEDIUM] Brute force suspected  (203.0.113.66) at 2026-10-16 14:30:02
+     Why: 35 failed logins from 203.0.113.66 between 14:30:02 and 14:34:00 (admin attempted). That fast, repeated guessing looks like a brute-force attack.
+
+  6. [MEDIUM] Targeted privileged account  (203.0.113.66) at 2026-10-16 14:30:02
+     Why: 36 attempts on the sensitive account 'admin' from 203.0.113.66 between 14:30:02 and 14:34:30. Privileged accounts are prime targets.
+
+  7. [MEDIUM] Brute force suspected  (192.0.2.77) at 2026-10-16 21:00:00
+     Why: 18 failed logins from 192.0.2.77 between 21:00:00 and 21:10:00 (admin/backup/ftp/git/guest/oracle/postgres/root/test/ubuntu/user attempted). That fast, repeated guessing looks like a brute-force attack.
+
+  8. [MEDIUM] Password spraying suspected  (192.0.2.77) at 2026-10-16 21:00:00
+     Why: 192.0.2.77 tried 12 different usernames (admin, backup, ftp, git, guest, jenkins, oracle, postgres, ...). Attackers do this to find any weak account instead of guessing one account's password.
+
+  9. [MEDIUM] Targeted privileged account  (192.0.2.77) at 2026-10-16 21:00:00
+     Why: 2 attempts on the sensitive account 'admin' from 192.0.2.77 between 21:00:00 and 21:00:30. Privileged accounts are prime targets.
+
+  10. [MEDIUM] Targeted privileged account  (192.0.2.77) at 2026-10-16 21:01:00
+     Why: 1 attempts on the sensitive account 'root' from 192.0.2.77 between 21:01:00 and 21:01:00. Privileged accounts are prime targets.
+
+  11. [MEDIUM] Targeted privileged account  (192.0.2.77) at 2026-10-16 21:02:00
+     Why: 2 attempts on the sensitive account 'test' from 192.0.2.77 between 21:02:00 and 21:02:30. Privileged accounts are prime targets.
+
+  12. [MEDIUM] Targeted privileged account  (192.0.2.77) at 2026-10-16 21:03:00
+     Why: 2 attempts on the sensitive account 'guest' from 192.0.2.77 between 21:03:00 and 21:03:30. Privileged accounts are prime targets.
+
+======================================================================
+LOW ALERTS (2)
+======================================================================
+  1. [LOW] Unusual login time  (192.0.2.99) at 2026-10-17 03:14:22
+     Why: carol logged in at 03:14:22 from 192.0.2.99. Normal activity here happens during the day, so a night login is worth a look.
+
+  2. [LOW] New IP for user  (192.0.2.99) at 2026-10-17 03:14:22
+     Why: carol logged in from 192.0.2.99, an address almost never seen with this account in the log. Could be travel, VPN, or something stolen.
+
+======================================================================
+End of report
+======================================================================
